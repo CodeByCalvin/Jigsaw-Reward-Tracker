@@ -13,13 +13,17 @@ This project has been created using:
 - React
 - CSS
 - JavaScript
-- Headbreaker Library
+- Headbreaker JS Library
+- Express JS
+- Mongo DB
 
 ## Upcoming features
 - Creating a puzzle
 - Importing a classroom photo to become the puzzle
 - Customising the size, shape and amount of jigsaw pieces
-- Tracking daily progressw
+- Tracking daily progress
+- User authentification
+- Storing information on a secure database
 
 ## Contribution
 
