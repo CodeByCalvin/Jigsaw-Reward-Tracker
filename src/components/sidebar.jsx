@@ -1,26 +1,34 @@
 import React, { useState } from "react";
 
-function Sidebar() {
-  const [className, setClassName] = useState("");
-  const [image, setImage] = useState(null);
-  const [pieces, setPieces] = useState(0);
-  function handleSubmit(event) {
-    event.preventDefault();
-    setClassName(event.target.elements.classInput.value);
+function Sidebar(props) {
+  function handleHorizontalPiecesChange(event) {
+    props.onHorizontalPiecesChange(parseInt(event.target.value));
+  }
+
+  function handleVerticalPiecesChange(event) {
+    props.onVerticalPiecesChange(parseInt(event.target.value));
   }
 
   return (
     <div className="sidebar">
-      <h1>{className}</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          id="classInput"
-          className="class-input"
-          placeholder="Enter your class name..."
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <label htmlFor="horizontalPiecesInput">
+        Number of horizontal pieces:
+      </label>
+      <input
+        type="number"
+        id="horizontalPiecesInput"
+        className="horizontal-pieces-input"
+        value={props.horizontalPieces}
+        onChange={handleHorizontalPiecesChange}
+      />
+      <label htmlFor="verticalPiecesInput">Number of vertical pieces:</label>
+      <input
+        type="number"
+        id="verticalPiecesInput"
+        className="vertical-pieces-input"
+        value={props.verticalPieces}
+        onChange={handleVerticalPiecesChange}
+      />
     </div>
   );
 }
