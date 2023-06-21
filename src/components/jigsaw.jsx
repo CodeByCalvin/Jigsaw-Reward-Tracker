@@ -18,15 +18,22 @@ const Jigsaw = (props) => {
       lineSoftness: 0.18,
     });
 
+    const metadata = [
+      { color: "#B83361" },
+      { color: "#B87D32" },
+      { color: "#A4C234" },
+      { color: "#37AB8C" },
+    ];
+
+    const metadataArray = Array.from(
+      { length: props.horizontalPieces * props.verticalPieces },
+      (_, i) => metadata[i % metadata.length]
+    );
+
     autogen.autogenerate({
       horizontalPiecesCount: props.horizontalPieces,
       verticalPiecesCount: props.verticalPieces,
-      metadata: [
-        { color: "#B83361" },
-        { color: "#B87D32" },
-        { color: "#A4C234" },
-        { color: "#37AB8C" },
-      ],
+      metadata: metadataArray,
     });
 
     autogen.draw();
