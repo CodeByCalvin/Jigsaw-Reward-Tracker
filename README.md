@@ -24,6 +24,7 @@ This project has been created using:
 - Tracking daily progress
 - User authentification
 - Storing information on a secure database
+- Print a certificate off/print to PDF
 
 ## Contribution
 
