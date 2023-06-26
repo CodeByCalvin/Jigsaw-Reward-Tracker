@@ -13,7 +13,7 @@ const Jigsaw = (props) => {
         height: 650,
         pieceSize: props.pieceSize,
         proximity: 20,
-        borderFill: 10,
+        borderFill: props.pieceSpacing,
         strokeWidth: 1.5,
         lineSoftness: 0.18,
         image: backgroundImg,
@@ -30,6 +30,7 @@ const Jigsaw = (props) => {
     props.horizontalPieces,
     props.verticalPieces,
     props.pieceSize,
+    props.pieceSpacing,
     props.image,
   ]);
 
