@@ -15,23 +15,7 @@ function Sidebar(props) {
     reader.readAsDataURL(file);
   };
 
-  // Sidebar functions
-  function handleHorizontalPiecesChange(event) {
-    props.onHorizontalPiecesChange(parseInt(event.target.value));
-  }
-
-  function handleVerticalPiecesChange(event) {
-    props.onVerticalPiecesChange(parseInt(event.target.value));
-  }
-
-  function handlePieceSizeChange(event) {
-    props.onPieceSizeChange(parseInt(event.target.value));
-  }
-
-  function handleClassNameChange(event) {
-    props.onClassNameChange(event.target.value);
-  }
-
+  // Display value vs real value
   return (
     <div className="sidebar">
       <label htmlFor="classname">Class name:</label>
@@ -40,7 +24,7 @@ function Sidebar(props) {
         id="classname"
         className="classname"
         value={props.className}
-        onChange={handleClassNameChange}
+        onChange={props.handleClassNameChange}
       />
       <br></br>
       <label htmlFor="startdate">Start date:</label>
@@ -58,9 +42,9 @@ function Sidebar(props) {
         type="number"
         id="horizontalPiecesInput"
         className="horizontal-pieces-input"
-        value={props.horizontalPieces}
         defaultValue={3}
-        onChange={handleHorizontalPiecesChange}
+        value={props.horizontalPieces}
+        onChange={props.onHorizontalPiecesChange}
       />
       <br></br>
       <label htmlFor="verticalPiecesInput">Number of vertical pieces:</label>
@@ -68,9 +52,9 @@ function Sidebar(props) {
         type="number"
         id="verticalPiecesInput"
         className="vertical-pieces-input"
-        value={props.verticalPieces}
         defaultValue={3}
-        onChange={handleVerticalPiecesChange}
+        value={props.verticalPieces}
+        onChange={props.onVerticalPiecesChange}
       />
       <br></br>
       <label htmlFor="jigsawPieceSize">Jigsaw piece size:</label>
@@ -79,8 +63,21 @@ function Sidebar(props) {
         id="jigsawPieceSize"
         className="jigsaw-piece-size"
         defaultValue={150}
-        onChange={handlePieceSizeChange}
+        onChange={props.onPieceSizeChange}
       />
+      <br></br>
+      <label htmlFor="jigsawPieceSpacing">Jigsaw piece border:</label>
+      <input
+        type="range"
+        min="0"
+        max="15"
+        id="jigsawPieceSpacing"
+        className="jigsaw-piece-spacing"
+        value={props.displayValue(props.pieceSpacing)}
+        onChange={(event) => props.onPieceSpacingChange(event)}
+      />
+      <span>{props.displayValue(props.pieceSpacing)}</span>
+
       <br></br>
       <label htmlFor="image-upload">Upload Image:</label>
       <input
