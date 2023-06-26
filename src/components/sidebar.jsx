@@ -1,12 +1,31 @@
 import React, { useState } from "react";
 
 function Sidebar(props) {
+  // Upload custom image
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const image = new Image();
+      image.src = event.target.result;
+      image.onload = () => {
+        props.onImageUpload(image);
+      };
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Sidebar functions
   function handleHorizontalPiecesChange(event) {
     props.onHorizontalPiecesChange(parseInt(event.target.value));
   }
 
   function handleVerticalPiecesChange(event) {
     props.onVerticalPiecesChange(parseInt(event.target.value));
+  }
+
+  function handlePieceSizeChange(event) {
+    props.onPieceSizeChange(parseInt(event.target.value));
   }
 
   function handleClassNameChange(event) {
@@ -24,11 +43,11 @@ function Sidebar(props) {
         onChange={handleClassNameChange}
       />
       <br></br>
-      <label htmlFor="startdate">Start Date:</label>
+      <label htmlFor="startdate">Start date:</label>
       <input type="date" id="startdate" className="startdate" />
 
       <br></br>
-      <label htmlFor="startdate">End Date:</label>
+      <label htmlFor="startdate">End date:</label>
       <input type="date" id="startdate" className="startdate" />
 
       <br></br>
@@ -54,20 +73,21 @@ function Sidebar(props) {
         onChange={handleVerticalPiecesChange}
       />
       <br></br>
-      <label htmlFor="jigsawPieceSize">Jigsaw piece pieceSize:</label>
+      <label htmlFor="jigsawPieceSize">Jigsaw piece size:</label>
       <input
         type="number"
         id="jigsawPieceSize"
         className="jigsaw-piece-size"
         defaultValue={150}
+        onChange={handlePieceSizeChange}
       />
       <br></br>
-      <label htmlFor="imageInput">Upload image:</label>
+      <label htmlFor="image-upload">Upload Image:</label>
       <input
         type="file"
-        id="imageInput"
-        className="image-input"
-        onChange={props.onImageChange}
+        id="image-upload"
+        className="image-upload"
+        onChange={handleImageUpload}
       />
       <br></br>
       <button onClick={props.onPrint}>Print Certicate</button>
